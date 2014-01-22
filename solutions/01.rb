@@ -1,11 +1,9 @@
 class Integer
   def prime?
-    if self <= 1 then return false end
-  counter = 2
-  while counter < Math.sqrt(self) do
-    if self % counter == 0 then return false else counter = counter + 1 end
-  end
-    return true
+    return false if self <= 1
+    (2 ... Math.sqrt(self)).all? do |divider|
+     self % divider != 0
+    end
   end
   def next_prime
     prime = self + 1
@@ -62,3 +60,5 @@ class Array
     [self[0]] + other.combine_with(self.drop(1))
   end
 end
+
+p 24.prime?
