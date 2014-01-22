@@ -6,12 +6,6 @@ class Integer
     end
   end
 
-  def next_prime
-    prime = self + 1
-    while not prime.prime? do prime = prime + 1 end
-    return prime
-  end
-
   def absolute
     self < 0 ? -self : self
   end
@@ -33,20 +27,17 @@ end
 
 class Array
   def frequencies
-    hash = {}
-    self.map{ |element| if hash[element] == nil
-      then
-        hash[element] = 1
-      else
-        hash[element] = hash[element] + 1
-      end}
-    return hash
+    hash = Hash.new 0
+    self.each{ |element| hash[element] += 1}
+    hash
   end
+
   def average
     sum = 0
     self.map{ |number| sum=sum + number}
     sum.to_f / self.length
   end
+
   def drop_every step
     count , result = 1 , []
     self.map{ |element| if not (count == step) then
@@ -55,6 +46,7 @@ class Array
     else count = 1 end }
     return result
   end
+
   def combine_with(other)
     if self == [] then return other end
     if other == [] then return self end
@@ -62,4 +54,4 @@ class Array
   end
 end
 
-p 1884.prime_factors
+p [1,2,1,1,1,1,11,1,13,4,2,1,3,5,2,5].frequencies
