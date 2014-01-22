@@ -38,7 +38,7 @@ class Array
     sum.to_f / self.length
   end
 
-  def drop_every step
+  def drop_every(step)
     self.map.with_index do |element,index|
       (index + 1) % step == 0 ? nil : element
     end.compact
