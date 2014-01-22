@@ -39,19 +39,14 @@ class Array
   end
 
   def drop_every step
-    count , result = 1 , []
-    self.map{ |element| if not (count == step) then
-      count = count + 1
-      result.push(element)
-    else count = 1 end }
-    return result
+    self.map.with_index do |element,index|
+      (index + 1) % step == 0 ? nil : element
+    end.compact
   end
 
   def combine_with(other)
-    if self == [] then return other end
-    if other == [] then return self end
-    [self[0]] + other.combine_with(self.drop(1))
+    return other if self.empty?
+    return self if other.empty?
+    [self.first] + other.combine_with(self.drop 1)
   end
 end
-
-p [1,2,1,1,1,1,11,1,13,4,2,1,3,5,2,5].frequencies
