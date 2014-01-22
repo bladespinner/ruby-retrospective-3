@@ -78,19 +78,6 @@ class TodoLineResolver < BaseLineResolver
     }
   end
 
-  def line_value_array(values)
-    [vals[0].downcase.to_sym,
-    vals[1],
-    vals[2].downcase.to_sym,
-    resolve_array_value(values[3])]
-  end
-
-  def line_values(values)
-    line_value_array values.map {|value|
-      value.strip
-    }
-  end
-
   def keys
     ["status","description","priority","tags"]
   end
