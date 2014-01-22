@@ -17,13 +17,8 @@ class Integer
   end
 
   def prime_factors
-    prime , current , result = 2 , self , []
-    while (current > 1) or (current < -1) do
-      if current % prime == 0 then
-        current=current/result.push(prime)[-1] else prime = prime.next_prime
-      end
-    end
-    return result
+    prime_factor = (2..self).find{|divisor| self % divisor == 0}
+    prime_factor ? [prime_factor] + (self / prime_factor).prime_factors : []
   end
 
   def harmonic
@@ -67,4 +62,4 @@ class Array
   end
 end
 
-p 24.prime?
+p 1884.prime_factors
