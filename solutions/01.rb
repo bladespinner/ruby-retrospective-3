@@ -5,14 +5,17 @@ class Integer
      self % divider != 0
     end
   end
+
   def next_prime
     prime = self + 1
     while not prime.prime? do prime = prime + 1 end
     return prime
   end
+
   def absolute
     self < 0 ? -self : self
   end
+
   def prime_factors
     prime , current , result = 2 , self , []
     while (current > 1) or (current < -1) do
@@ -22,9 +25,12 @@ class Integer
     end
     return result
   end
+
   def harmonic
-    if self <= 0 then return 0 else return 1.to_r/self + (self-1).harmonic end
+    return 0 if self <= 0
+    1.to_r/self + (self-1).harmonic
   end
+
   def digits
     self.absolute.to_s.split('').map { |digit| digit.to_i }
   end
